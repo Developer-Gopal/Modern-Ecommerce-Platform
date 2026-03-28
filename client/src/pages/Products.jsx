@@ -30,6 +30,7 @@ export default function Products({ onAddToCart }) {
       categories.push(p.category);
     }
   });
+
   const filteredProducts =
     category === "all"
       ? products
@@ -39,15 +40,17 @@ export default function Products({ onAddToCart }) {
     <div className="bg-gray-50 min-h-screen">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-6 mt-10">
-        <h3 className="text-xl font-bold mb-4">Browse By Category</h3>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10">
+        <h3 className="text-lg sm:text-xl font-bold mb-4">
+          Browse By Category
+        </h3>
 
-        <div className="flex flex-wrap gap-3 mb-8">
+        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
           {categories.map((cat, index) => (
             <button
               key={index}
               onClick={() => setCategory(cat)}
-              className={`px-4 py-2 border rounded-full capitalize ${
+              className={`px-4 py-2 whitespace-nowrap border rounded-full capitalize text-sm sm:text-base transition ${
                 category === cat
                   ? "bg-blue-500 text-white"
                   : "bg-white text-gray-600"
@@ -59,8 +62,8 @@ export default function Products({ onAddToCart }) {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 pb-16">
-        <h3 className="text-xl font-bold mb-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <h3 className="text-lg sm:text-xl font-bold mb-4">
           {category === "all" ? "All Products" : category} (
           {filteredProducts.length})
         </h3>
@@ -70,7 +73,16 @@ export default function Products({ onAddToCart }) {
             <div className="w-10 h-10 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div
+            className="
+              grid gap-4 sm:gap-6
+              grid-cols-1 
+              sm:grid-cols-2 
+              md:grid-cols-3 
+              lg:grid-cols-4 
+              xl:grid-cols-5
+            "
+          >
             {filteredProducts.map((product) => (
               <div key={product.id}>
                 <ProductCard
